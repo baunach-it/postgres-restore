@@ -1,7 +1,8 @@
 # Docker Image to Restore Postgres databases
 This image is based on a standard postgres image and supports restoring from dumps in s3 compatible storage using the aws cli.
-
 The aws cli will be automatically installed when the env vars `AWS_S3_BUCKET` and `AWS_S3_PATH` are set.
+
+[Dockerfile](https://github.com/baunach-it/postgres-restore/blob/main/Dockerfile)
 
 ## Usage
 Create a .env file in the desired location
