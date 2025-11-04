@@ -62,7 +62,9 @@ fi
 
 # Restore the dump using psql
 echo "Restoring dump file: /restore/$DUMPFILE"
-gzip -c "/restore/$DUMPFILE" | PGPASSWORD=$POSTGRES_RESTORE_TARGET_PASSWORD psql -h $POSTGRES_RESTORE_TARGET_DB_HOST -p $POSTGRES_RESTORE_TARGET_DB_PORT -U $POSTGRES_RESTORE_TARGET_USER -d $POSTGRES_RESTORE_TARGET_DB_NAME
+gzip -d "/restore/$DUMPFILE"
+dos2unix "/restore/${DUMPFILE%.gz}"
+PGPASSWORD=$POSTGRES_RESTORE_TARGET_PASSWORD psql -h $POSTGRES_RESTORE_TARGET_DB_HOST -p $POSTGRES_RESTORE_TARGET_DB_PORT -U $POSTGRES_RESTORE_TARGET_USER -d $POSTGRES_RESTORE_TARGET_DB_NAME -f "/restore/${DUMPFILE%.gz}"
 
 if [ $? -eq 0 ]; then
   echo "Database successfully restored from dump file: /restore/$DUMPFILE"
