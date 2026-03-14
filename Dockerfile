@@ -18,7 +18,9 @@ ENV POSTGRES_RESTORE_AWS_CLI_VERSION=""
 ENV POSTGRES_RESTORE_S3_ENDPOINT=""
 ENV POSTGRES_RESTORE_DUMPFILE=""
 
-RUN apt-get update && apt-get install -y dos2unix gzip curl unzip && rm -rf /var/lib/apt/lists/*
+RUN apt-get update --quiet && \
+    apt-get install -y --no-install-recommends dos2unix gzip curl unzip && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN dos2unix /usr/local/bin/entrypoint.sh && chmod +x /usr/local/bin/entrypoint.sh
