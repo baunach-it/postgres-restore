@@ -19,7 +19,7 @@ ENV POSTGRES_RESTORE_S3_ENDPOINT=""
 ENV POSTGRES_RESTORE_DUMPFILE=""
 
 RUN apt-get update --quiet && \
-    apt-get install -y --no-install-recommends dos2unix gzip curl unzip && \
+    apt-get install -y --no-install-recommends ca-certificates dos2unix gzip curl unzip && \
     rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
